@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <p>You answered <strong>{{ correct_count }}</strong> out of <strong>{{ total_questions }}</strong> questions correctly!</p>
+        <p>Your score is: <strong>{{ score }}</strong></p> <!-- Display the score here -->
+        <a href="{% url 'question_list' %}" class="btn btn-primary">Retake Quiz</a>
+    </div>
+</body>
+</html>

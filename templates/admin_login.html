@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        .home-button {
+            float: right; /* Float button to the right */
+            margin-bottom: 25px;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>User Details and Marks</h1>
+        <a href="{% url 'login' %}" class="btn btn-primary home-button" >Home</a> <!-- Bootstrap button -->
+    </div>
+
+    <table class="table table-bordered mt-4">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>College Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Total Marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in combined_data %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.clg_name }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.total_marks }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No users found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

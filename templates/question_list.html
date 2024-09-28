@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        body {
+            background-color: #e9ecef; /* Light gray background */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white; /* White card for questions */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .question h5 {
+            font-weight: bold; /* Make questions bold */
+            color: #495057; /* Darker text for questions */
+        }
+        .form-check {
+            margin-left: 0;
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .form-check-input {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background-color: #007bff; /* Bootstrap primary color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            font-weight: bold; /* Bold submit button text */
+        }
+        .submit-btn:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Quiz Questions</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for question in questions %}
+                <div class="question">
+                    <h5>{{ forloop.counter }}. {{ question.question }}</h5>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="question_{{ forloop.counter }}" value="{{ question.option_1 }}" >
+                        <label class="form-check-label">{{ question.option_1 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="question_{{ forloop.counter }}" value="{{ question.option_2 }}">
+                        <label class="form-check-label">{{ question.option_2 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="question_{{ forloop.counter }}" value="{{ question.option_3 }}">
+                        <label class="form-check-label">{{ question.option_3 }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="question_{{ forloop.counter }}" value="{{ question.option_4 }}">
+                        <label class="form-check-label">{{ question.option_4 }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div class="footer">Your answers will be submitted anonymously.</div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
